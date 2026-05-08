@@ -1,0 +1,62 @@
+# Conda environment for AnimalCommunication pipeline (virtual env – no global installs)
+# Optimized for Apple Silicon (M3) Mac.
+# Use: conda env create -f environment.yml   then: conda activate animal-comm
+
+name: animal-comm
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+
+  # Core scientific stack (conda-forge has arm64 builds for M-series)
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - joblib
+
+  # Audio / signal
+  - librosa
+  - soundfile
+
+  # Dimensionality reduction & clustering
+  - umap-learn
+  - hdbscan
+
+  # Graphs & trees
+  - networkx
+  - suffix-tree
+
+  # Jupyter
+  - jupyter
+  - ipykernel
+  - ipywidgets
+
+  # AWS (optional, for S3 dataset access)
+  - boto3
+
+  # Pip-only deps (see below)
+  - pip:
+    # TensorFlow: Apple Silicon–native from 2.9+; use tensorflow-metal for GPU
+    - tensorflow>=2.13
+    - tensorflow-metal  # M-series GPU acceleration (macOS only)
+
+    # GitHub packages (no conda package)
+    - git+https://github.com/timsainb/AVGN.git
+    - git+https://github.com/timsainb/vocalization-segmentation.git
+
+    # Notebooks use pathlib2 (Python 2 backport); harmless on 3.11
+    - pathlib2
+
+    # Optional: used in TF_AE and some notebooks
+    - noisereduce
+    - scikit-image
+
+    # RQ1 DTW+Ward proxy (assom_exact_reproduction.ipynb)
+    - dtaidistance
+    - kneed

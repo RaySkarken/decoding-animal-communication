@@ -1,0 +1,58 @@
+# AnimalCommunication pipeline
+# Install ONLY inside a virtual environment (never system Python).
+#
+# 1. python3 -m venv .venv
+# 2. source .venv/bin/activate
+# 3. pip install --upgrade pip && pip install -r requirements.txt
+# 4. pip install git+https://github.com/timsainb/AVGN.git git+https://github.com/timsainb/vocalization-segmentation.git
+# 5. (M3 Mac) pip install tensorflow-metal
+#
+# On M3 Mac: TensorFlow and tensorflow-metal use native arm64 wheels.
+
+# Core
+numpy>=1.24,<2
+scipy
+pandas
+matplotlib
+seaborn
+scikit-learn>=1.2
+joblib
+
+# Audio
+librosa
+soundfile
+
+# Clustering & embedding
+umap-learn
+hdbscan
+dtaidistance
+kneed
+
+# Syntax / MR
+networkx
+suffix-tree
+
+# Jupyter
+jupyter
+ipykernel
+ipywidgets
+
+# AWS (optional)
+boto3
+
+# TensorFlow (Apple Silicon: install tensorflow-metal after for GPU)
+tensorflow>=2.13
+
+# From GitHub (install after pip install -r requirements.txt):
+# pip install git+https://github.com/timsainb/AVGN.git
+# pip install git+https://github.com/timsainb/vocalization-segmentation.git
+
+# Compatibility
+pathlib2
+
+# Optional
+noisereduce
+scikit-image
+
+# BEATs / NatureLM-audio (merged weights from safetensors)
+safetensors

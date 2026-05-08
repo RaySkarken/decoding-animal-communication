@@ -1,0 +1,22 @@
+# Core deps only (no TensorFlow). Install first, then tensorflow + GitHub packages.
+numpy>=1.24,<2
+scipy
+pandas
+matplotlib
+seaborn
+scikit-learn>=1.2
+joblib
+librosa
+soundfile
+umap-learn
+hdbscan
+networkx
+suffix-tree
+jupyter
+ipykernel
+ipywidgets
+boto3
+certifi
+pathlib2
+noisereduce
+scikit-image

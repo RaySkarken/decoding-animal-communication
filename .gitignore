@@ -1,0 +1,55 @@
+# === Vendored / third-party repos (linked in README) ===
+decodingNonHumanCommunication/
+naturelm_audio/
+FruitBat-vocalizations-open-data/
+
+# === Documentation (kept private per author's choice) ===
+docs/
+*.docx
+
+# === External paper PDFs ===
+2512.01033v1.pdf
+
+# === Python ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# === ML artefacts (kept on external SSD, see reference_checkpoints memory) ===
+*.npy
+*.joblib
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+
+# === Notebooks output ===
+*.nbconvert.ipynb
+
+# === IDE ===
+.vscode/
+.idea/
+*.iml
+
+# === OS ===
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# === Logs ===
+*.log
+/tmp/
+
+# === Env files ===
+.env
+.env.local
