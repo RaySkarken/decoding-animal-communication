@@ -53,3 +53,9 @@ Thumbs.db
 # === Env files ===
 .env
 .env.local
+
+# === Conference NLP tokenization ===
+nlp_tokenization/data/
+nlp_tokenization/results/*.pt
+nlp_tokenization/results/*.bin
+*.zip
