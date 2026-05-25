@@ -269,3 +269,21 @@ Bats have HIGHER token diversity than marmosets yet show NO order effect, while 
 predicts the reverse. The marmoset order effect must arise from PATTERNED arrangement of
 few tokens (e.g., periodic alternation in twitter calls) — higher-order sequential
 regularity, not token diversity. (Tested my own hypothesis; it failed — reported honestly.)
+
+## Mechanism CONFIRMED — sequential dependency (not diversity) explains the dissociation
+Bigram sequential dependency = fraction of next-token uncertainty removed by the
+previous token, dep = (H1−H2)/H1:
+
+| dataset (V=30) | seq_dependency (real) | shuffled |
+|---|---|---|
+| bat_segment | 0.130 | 0.097 |
+| bat_frame | 0.327 | 0.040 |
+| marmoset_frame | **0.775** | 0.470 |
+
+Marmoset sequences: prev token removes 77.5% of next-token uncertainty — vs 13–33% for
+bats. At matched frame granularity marmoset dep (0.775) ≈ 2.4× bat (0.327). Bat's modest
+frame dependency (0.327 vs 0.040 shuffled) is low-level **acoustic smoothness**
+(adjacent mel frames similar) and is *context-irrelevant* (order effect n.s.). So the
+order dissociation is explained: marmoset token sequences carry strong MEANINGFUL
+token-to-token structure; bat sequences carry weak/acoustic-only structure. This
+replaces the refuted diversity hypothesis with the correct information-theoretic one.

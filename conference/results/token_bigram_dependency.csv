@@ -1,0 +1,4 @@
+dataset,H1_unigram,H2_bigram_cond,seq_dependency,shuf_dependency,n_seq
+bat_segment,4.707,4.094,0.13,0.097,16738
+bat_frame,2.863,1.926,0.327,0.04,21389
+marmoset_frame,4.663,1.048,0.775,0.47,60049
