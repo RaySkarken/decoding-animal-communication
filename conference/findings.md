@@ -128,8 +128,21 @@ proxy" point.)
 
 → SSL positives = same-vocalization sub-units → makes sub-units *invariant* → helps
 vocalization-level labels (bat context, marmoset caller) but ERASES within-call
-structure → hurts call-type. **The SSL positive-pair definition determines which tasks
-benefit** — a design lesson, not a blanket "SSL best".
+structure → hurts call-type.
+
+**CAUSAL ablation (positive-pair strategy × task, marmoset, 5 seeds):**
+| strategy | caller | call-type |
+|---|---|---|
+| mel (no SSL) | 0.406 | **0.291** |
+| same-call | **0.438** | 0.118 |
+| same-frame augment | 0.319 | 0.206 |
+| adjacent | 0.381 | 0.119 |
+
+→ Clear crossover: voc-invariant (same-call) maximizes caller, destroys call-type;
+frame-preserving (augment) recovers call-type (0.206 vs 0.118), loses caller. **The
+contrastive invariance causally selects which task the tokens serve** — a design
+principle. Honest bound: SSL beats mel only for caller (+0.032); no SSL variant beats
+mel for call-type (within-call structure).
 
 ---
 

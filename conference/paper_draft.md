@@ -134,16 +134,26 @@ discretization cost only +0.025 (vs ~0.11 for mel-UMAP). SSL tokens also agree m
 with an independent DTW acoustic reference (ARI 0.048 vs 0.041; NMI 0.454 vs 0.441)
 *despite lower silhouette* (0.088 vs 0.191) — silhouette mis-ranks quality.
 
-**But the SSL advantage is task-dependent, not universal (key nuance).** The SSL
-objective uses positives = two sub-units of the same vocalization, making within-
-vocalization sub-units *invariant*. On marmosets this helps **caller** (0.452 vs
-0.406 mel) but badly hurts **call-type** (0.128 vs 0.291 mel): erasing within-call
-structure aids individual identity but destroys the acoustic detail that defines
-call-type. Unified reading across species: same-vocalization-contrastive SSL tokens
-improve **vocalization-level labels** (bat context, marmoset caller) and hurt labels
-requiring **within-vocalization structure** (marmoset call-type). *The SSL positive-
-pair definition determines which downstream tasks benefit* — a design lesson for
-bioacoustic tokenization, not a blanket "SSL is best".
+**But the SSL advantage is task-dependent, and we show the cause is the positive-pair
+definition (controlled ablation).** Training the same SSL with three positive-pair
+strategies on marmosets (macro-F1, bag-LR, 5 seeds):
+
+| positive strategy | caller | call-type |
+|---|---|---|
+| mel (no SSL) | 0.406 | **0.291** |
+| same-call (voc-invariant) | **0.438** | 0.118 |
+| same-frame augment | 0.319 | 0.206 |
+| adjacent frames | 0.381 | 0.119 |
+
+A clear crossover: vocalization-invariant positives (same-call) maximize **caller** and
+destroy **call-type**; frame-preserving positives (augment) recover call-type
+(0.206 vs 0.118) at the cost of caller (0.319 vs 0.438). **The contrastive invariance
+causally selects which task the tokens serve** — a concrete design principle for
+bioacoustic tokenization. Honest bound: SSL beats mel only where its invariance aligns
+with the label (caller, +0.032); for fine within-call structure (call-type) no SSL
+variant beats plain mel frames. Unified across species: same-vocalization-contrastive
+SSL helps **vocalization-level labels** (bat context, marmoset caller) and hurts
+**within-vocalization-structure labels** (marmoset call-type).
 
 ### 4.4 Leakage caveat
 
