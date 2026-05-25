@@ -1,0 +1,4 @@
+species_tok,n_voc,mean_len,mean_unique,mean_norm_entropy,mean_repetition,frac_singletoken
+bat_segment,16738,7.113,4.515,0.369,0.225,0.038
+bat_frame,21389,65.665,10.204,0.4,0.816,0.0
+marmoset_frame,60049,23.708,3.38,0.26,0.723,0.126

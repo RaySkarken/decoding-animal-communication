@@ -253,3 +253,19 @@ context. Per-context tokenizers must be evaluated by generative max-likelihood
 - [ ] next-token intrinsic order test (running) — 3rd independent confirmation.
 - [ ] SSL vocab sweep V∈{15,30,60,120} — robustness of the SSL-tokenizer advantage.
 - [ ] (stretch) SSL + SCAN deep clustering (full SensorSCAN recipe) vs SSL+kmeans.
+
+## Mechanism check — diversity hypothesis REFUTED (honest negative)
+Hypothesis: bat order-null stems from low within-vocalization token diversity (if a voc
+is one repeated token, order can't matter). The data refute it:
+
+| species (V=30) | mean_unique | norm_entropy | repetition |
+|---|---|---|---|
+| bat (frame) | 10.2 | 0.40 | 0.82 |
+| bat (segment) | 4.5 | 0.37 | 0.23 |
+| marmoset (frame) | 3.4 | 0.26 | 0.72 |
+
+Bats have HIGHER token diversity than marmosets yet show NO order effect, while marmosets
+(~3.4 unique tokens/call) DO. → Diversity does not explain the difference; if anything it
+predicts the reverse. The marmoset order effect must arise from PATTERNED arrangement of
+few tokens (e.g., periodic alternation in twitter calls) — higher-order sequential
+regularity, not token diversity. (Tested my own hypothesis; it failed — reported honestly.)
