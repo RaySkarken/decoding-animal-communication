@@ -287,3 +287,20 @@ frame dependency (0.327 vs 0.040 shuffled) is low-level **acoustic smoothness**
 order dissociation is explained: marmoset token sequences carry strong MEANINGFUL
 token-to-token structure; bat sequences carry weak/acoustic-only structure. This
 replaces the refuted diversity hypothesis with the correct information-theoretic one.
+
+## Per-call-type dependency — does NOT cleanly localize to combinatorial calls (caveat)
+Per marmoset call-type bigram dep_gain (real − shuffled): Phee (single tonal sweep, len
+47.6) = 0.332 (HIGHEST), Twitter (repeated phrases, len 8.7) = 0.314, Egg (short, len
+4.0) = 0.152 (lowest). Expected the repeated-phrase calls (twitter) to dominate; instead
+a tonal sweep does, because frame-level dependency captures ACOUSTIC SMOOTHNESS (a
+continuous sweep makes frame t predict t+1) as much as combinatorial structure. → Do NOT
+claim biological localization; frame-level dependency conflates smoothness with
+combinatorial structure (same caveat as bat frame dependency). Honest tempering.
+
+## Meta: truth boundary reached
+Recent mechanistic probes (token diversity; per-call-type localization) are
+refuted/tempered rather than confirmed — the signature of having reached the core
+finding. Robust results: (1) order effects small & length-confounded (multiset
+dominates); (2) modest pooled marmoset>bat order contrast; (3) SSL tokenizer best
+discrete (task-dependent, causal positive-pair ablation); (4) per-context leakage;
+(5) silhouette mis-ranks. Further analyses add caveats, not new signal.
