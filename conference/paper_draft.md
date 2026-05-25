@@ -162,6 +162,22 @@ token-sequence classifier reads the label off the ID range: bag-LR reaches macro
 ≈ 1.000. Per-context tokenizers must be evaluated by generative max-likelihood, not by
 token-sequence classifiers.
 
+### 4.5 Mechanism: sequential dependency, not token diversity
+
+Why does order help marmosets but not bats? We test two explanations. **Token diversity
+(refuted):** if a vocalization were one repeated token, order could not matter — but
+bats have *higher* within-vocalization token diversity than marmosets (10.2 vs 3.4
+unique tokens/voc; normalized entropy 0.40 vs 0.26), the opposite of what diversity
+would predict. **Sequential dependency (confirmed):** the bigram dependency
+(H(tₙ)−H(tₙ|tₙ₋₁))/H(tₙ) — the fraction of next-token uncertainty removed by the
+previous token — is 0.775 for marmosets vs 0.327 (frame) / 0.130 (segment) for bats.
+At matched frame granularity marmoset dependency is ≈2.4× the bat's; moreover the bat's
+modest frame-level dependency (0.327 vs 0.040 shuffled) is low-level acoustic smoothness
+(adjacent mel frames are similar) and is context-irrelevant (order ablation n.s.). Thus
+marmoset token sequences carry strong, communicatively meaningful token-to-token
+structure, whereas bat sequences carry weak, acoustic-only structure — the
+information-theoretic basis of the cross-species order dissociation.
+
 ## 5. Discussion & limitations
 
 Our headline is cautionary and constructive: (a) token-order effects in tokenized

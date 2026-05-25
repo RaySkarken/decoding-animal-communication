@@ -115,8 +115,26 @@ def fig_ssl_ablation():
     print('fig4 saved', flush=True)
 
 
+def fig_dependency():
+    bd = pd.read_csv(R / 'token_bigram_dependency.csv')
+    order = ['bat_segment', 'bat_frame', 'marmoset_frame']
+    bd = bd.set_index('dataset').reindex([o for o in order if o in bd.dataset.values]) \
+        if 'dataset' in bd.columns else bd
+    bd = pd.read_csv(R / 'token_bigram_dependency.csv').set_index('dataset').reindex(order)
+    fig, ax = plt.subplots(figsize=(6, 4))
+    x = np.arange(len(bd)); w = 0.38
+    ax.bar(x - w/2, bd['seq_dependency'], w, label='real order', color='tab:green')
+    ax.bar(x + w/2, bd['shuf_dependency'], w, label='shuffled', color='tab:gray')
+    ax.set_xticks(x); ax.set_xticklabels(bd.index, rotation=12)
+    ax.set_ylabel('bigram sequential dependency\n(frac. next-token uncertainty removed)')
+    ax.set_title('Sequential dependency: marmosets ≫ bats (mechanism)')
+    ax.legend()
+    fig.tight_layout(); fig.savefig(FIG / 'fig5_sequential_dependency.pdf'); fig.savefig(FIG / 'fig5_sequential_dependency.png')
+    print('fig5 saved', flush=True)
+
+
 if __name__ == '__main__':
-    for f in (fig_order, fig_length, fig_ssl_vocab, fig_ssl_ablation):
+    for f in (fig_order, fig_length, fig_ssl_vocab, fig_ssl_ablation, fig_dependency):
         try:
             f()
         except Exception as e:
