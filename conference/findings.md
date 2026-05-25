@@ -122,23 +122,26 @@ proxy" point.)
 
 ---
 
-## HEADLINE — cross-species dissociation (order matters for marmosets, not bats)
-Same pipeline (sub-unit tokens -> BERT real vs within-call SHUFFLED order + bag-LR),
-InfantMarmosetsVox. **Preliminary (twin_2 only; full run pending download):**
+## HEADLINE — length-controlled cross-species dissociation (CONFIRMED)
+Same pipeline (sub-unit tokens -> BERT real vs SHUFFLED order + bag), shuffle control,
+cross-individual splits, CIs. Marmoset = full twins 1-4 (8 callers, ~60k calls);
+bat = frame-level long sequences (5 seeds).
 
 | species (system) | task | real | shuf | Δ(real−shuf) 95%CI | BERT vs bag |
 |---|---|---|---|---|---|
-| bat (graded) | context | 0.276 | 0.276 | [−0.004,+0.004] **n.s.** | ≈ (0.276/0.230) |
+| marmoset (structured) | call-type (11) | 0.487 | 0.458 | **+0.029 [+0.018,+0.041]** helps | ≫ (0.487/0.293) |
+| marmoset (structured) | caller (8) | 0.612 | 0.582 | **+0.030 [+0.018,+0.042]** helps | ≫ (0.612/0.411) |
+| bat (graded) | context (frame, len~78) | 0.306 | 0.303 | +0.008 [−0.005,+0.021] **n.s.** | ≈ |
+| bat (graded) | context (segment, len~4) | 0.276 | 0.276 | [−0.004,+0.004] **n.s.** | ≈ |
 | bat (graded) | caller | 0.162 | 0.163 | [−0.006,+0.003] **n.s.** | ≈ |
-| marmoset (structured) | call-type | 0.578 | 0.564 | **[+0.004,+0.022]** helps | ≫ (0.578/0.404) |
-| marmoset (structured) | caller | 0.897 | 0.885 | **[+0.007,+0.017]** helps | ≫ (0.897/0.825) |
 
-→ **Whether token order carries communicative information depends on the vocal
-system.** Graded systems (bat) = order irrelevant, multiset is everything (BERT≈bag).
-Structured-call species (marmoset; twitter = repeated phrases) = order adds a small
-but significant amount, and BERT ≫ bag. This reframes "leverage sequential
-structure" (Sarkar) as **species/system-dependent**, established with shuffle
-controls + CIs across two species.
+→ **Token order carries communicative information in marmosets (structured calls) but
+NOT bats (graded system) — even though bat sequences are LONGER (78 vs 37).** Length
+cannot explain the bat null → genuine vocal-SYSTEM difference. Critically, order is
+also n.s. at SHORT sequences in BOTH species (length confound): naive comparisons
+conflate length with system. This reframes "leverage sequential structure" (Sarkar)
+as **(a) length-dependent and (b) system-dependent**, with the controls prior work
+lacked.
 
 **Honest caveats (to resolve):**
 1. Marmoset order effect is small (Δ≈0.012–0.013) though significant (CI>0).
