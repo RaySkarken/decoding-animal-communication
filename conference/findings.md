@@ -135,13 +135,24 @@ bat = frame-level long sequences (5 seeds).
 | bat (graded) | context (segment, len~4) | 0.276 | 0.276 | [−0.004,+0.004] **n.s.** | ≈ |
 | bat (graded) | caller | 0.162 | 0.163 | [−0.006,+0.003] **n.s.** | ≈ |
 
-→ **Token order carries communicative information in marmosets (structured calls) but
-NOT bats (graded system) — even though bat sequences are LONGER (78 vs 37).** Length
-cannot explain the bat null → genuine vocal-SYSTEM difference. Critically, order is
-also n.s. at SHORT sequences in BOTH species (length confound): naive comparisons
-conflate length with system. This reframes "leverage sequential structure" (Sarkar)
-as **(a) length-dependent and (b) system-dependent**, with the controls prior work
-lacked.
+→ **HONEST bottom line (after length-matched control — do NOT overclaim a clean
+per-band dissociation):**
+
+Marmoset call-type banded (full data, 5 seeds): 2–4 frames Δ+0.002 n.s.; 13–40
+Δ+0.010 [+0.001,+0.018] sig; 41–96 Δ+0.031 [−0.006,+0.067] **n.s.** (noisy). Bat
+41–96 Δ+0.008 n.s. → at the *exact matched 41–96 band BOTH are n.s.*; the clean
+matched-length dissociation does not hold per-band.
+
+Defensible claims:
+1. **Order effects are SMALL for both species (Δ≈0.01–0.03)** — the token *multiset*
+   dominates classification (BERT≈bag for bats; BERT≫bag for marmosets is mostly the
+   richer multiset, not order). This *tempers* "leverage sequential structure".
+2. **Pooled (full data): marmosets show a small but significant order benefit**
+   (call-type +0.029, caller +0.030, CIs>0); **bats show none** (n.s. overall and at
+   frame-level long ~78). The species difference holds at the pooled level.
+3. **Sequence length modulates the effect** (n.s. at short sequences in both) — a real
+   confound prior work (Sarkar) ignores; but per-band power is limited, so we report
+   the pooled species contrast as the headline, with length as a modulator.
 
 **Honest caveats (to resolve):**
 1. Marmoset order effect is small (Δ≈0.012–0.013) though significant (CI>0).

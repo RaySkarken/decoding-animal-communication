@@ -20,8 +20,8 @@ import seqlib as S
 CACHE = Path('/Volumes/T7/datasets/InfantMarmosetsVox/cache')
 OUT = Path('conference/results'); OUT.mkdir(parents=True, exist_ok=True)
 V_TOK = 30
-N_SEEDS = 3
-BANDS = [(2, 4), (5, 8), (9, 48)]   # short (bat-like), mid, long
+N_SEEDS = 5
+BANDS = [(2, 4), (13, 40), (41, 96)]
 
 
 def load_calls():
