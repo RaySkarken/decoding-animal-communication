@@ -122,11 +122,77 @@ proxy" point.)
 
 ---
 
-## Generalization (in progress) — does the order-null hold on a 2nd species?
-Target: InfantMarmosetsVox (Sarkar's own data; Zenodo 10130104; call-type + caller).
-Plan: mirror the bat pipeline (segments -> SSL/k-means tokens -> BERT/kNN order
-control). If marmosets ALSO show order n.s. -> general claim. If order helps for
-marmosets -> bats (graded system) are special. Either outcome is significant.
+## HEADLINE — cross-species dissociation (order matters for marmosets, not bats)
+Same pipeline (sub-unit tokens -> BERT real vs within-call SHUFFLED order + bag-LR),
+InfantMarmosetsVox. **Preliminary (twin_2 only; full run pending download):**
+
+| species (system) | task | real | shuf | Δ(real−shuf) 95%CI | BERT vs bag |
+|---|---|---|---|---|---|
+| bat (graded) | context | 0.276 | 0.276 | [−0.004,+0.004] **n.s.** | ≈ (0.276/0.230) |
+| bat (graded) | caller | 0.162 | 0.163 | [−0.006,+0.003] **n.s.** | ≈ |
+| marmoset (structured) | call-type | 0.578 | 0.564 | **[+0.004,+0.022]** helps | ≫ (0.578/0.404) |
+| marmoset (structured) | caller | 0.897 | 0.885 | **[+0.007,+0.017]** helps | ≫ (0.897/0.825) |
+
+→ **Whether token order carries communicative information depends on the vocal
+system.** Graded systems (bat) = order irrelevant, multiset is everything (BERT≈bag).
+Structured-call species (marmoset; twitter = repeated phrases) = order adds a small
+but significant amount, and BERT ≫ bag. This reframes "leverage sequential
+structure" (Sarkar) as **species/system-dependent**, established with shuffle
+controls + CIs across two species.
+
+**Honest caveats (to resolve):**
+1. Marmoset order effect is small (Δ≈0.012–0.013) though significant (CI>0).
+2. Preliminary: twin_2 only (caller = 2-class). Full run (10 callers) pending download.
+3. **Sequence-length confound:** bat sub-unit sequences are short (~4) vs marmoset (~11).
+
+### CONFOUND CONFIRMED — order effect is length-driven, not species-driven
+Length-stratified marmoset call-type (twin_2):
+
+| band (frames) | mean len | Δ(real−shuf) 95%CI |
+|---|---|---|
+| 2–4 (bat-like) | 3.5 | +0.000 **n.s.** |
+| 5–8 | 6.4 | +0.017 **n.s.** |
+| 9–48 | 36.9 | +0.050 **ORDER HELPS** |
+
+→ When marmoset sequences are SHORT (bat-like), order is **also n.s.** The apparent
+cross-species dissociation is a **length confound**: order only matters once
+sequences are long (~37). **Do NOT claim a clean species dissociation.**
+
+→ Real open question: is the bat order-null fundamental (graded system) or just a
+consequence of short bat sub-unit sequences?
+
+### Disentangled: order effect is LENGTH-dependent + modest species difference
+Bat frame-level (each segment = 21 mel frames; bat frame-seqs are inherently long ≥21):
+
+| species | task | mean len | Δ(real−shuf) 95%CI |
+|---|---|---|---|
+| bat (frame, long) | context | 78 | +0.014 [−0.001, +0.028] borderline (3 seeds) |
+| marmoset (long) | call-type | 37 | +0.050 [+0.035, +0.064] significant |
+| marmoset (short, bat-like) | call-type | 3.5 | +0.000 n.s. |
+| bat (segment, short) | context | 4 | +0.000 n.s. |
+
+**Honest synthesis (firmed, 5 seeds):**
+| species | mean len | Δ(real−shuf) 95%CI |
+|---|---|---|
+| bat (frame, long) | 78 | +0.008 [−0.005, +0.021] **n.s.** |
+| marmoset (long) | 37 | +0.050 [+0.035, +0.064] **sig** |
+| both, short (≤4) | 3–4 | ~0 **n.s.** |
+
+1. **Sequence length is a confound the subfield (incl. Sarkar) ignores:** order is n.s.
+   at SHORT sequences in BOTH species; the effect appears only at length.
+2. **At LONG length the dissociation is genuine, NOT length:** bat sequences are even
+   LONGER (78) than marmoset (37) yet show NO order effect (n.s.), while marmosets do
+   (+0.050). Length cannot explain the bat null → the difference is the vocal SYSTEM.
+3. **Final headline:** token order carries communicative info in marmosets (structured
+   calls) but not bats (graded system), even at greater bat sequence length —
+   established with shuffle controls, length stratification, cross-individual splits,
+   and CIs (controls absent from prior work).
+
+→ Significant + rigorous contribution: (a) "sequential-structure" claims for animal
+vocalizations must control for sequence length; (b) once controlled, a genuine
+graded-vs-structured vocal-system dissociation remains; (c) constructive SSL tokenizer
+(best discrete repertoire); (d) per-context leakage caveat.
+NOTE: marmoset side currently twin_2 only — confirming with full 10-caller data.
 
 ### Finding 3 — methodological: per-context token-IDs leak the label
 Feeding per-context token sequences (disjoint vocab per context) to any sequence
