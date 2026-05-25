@@ -109,6 +109,25 @@ thesis per-context DP-GMM with ~110 tokens (0.313).
 vs mel-UMAP discretization which loses ~0.11. → A good (SSL) tokenizer makes
 discrete symbolic analysis viable for behavioral context.
 
+**Label-free corroboration (agreement with independent DTW acoustic proxy):**
+| tokenizer | ARI(proxy) | AMI | NMI | silhouette |
+|---|---|---|---|---|
+| mel-UMAP V=120 | 0.041 | 0.229 | 0.441 | 0.191 |
+| SSL V=120 | **0.048** | **0.247** | **0.454** | 0.088 |
+
+→ SSL tokens agree MORE with independent acoustics at every V — **despite LOWER
+silhouette**. Silhouette misleads; downstream F1 + acoustic agreement + next-token
+perplexity all favor SSL. (Reinforces the thesis's "silhouette is a poor quality
+proxy" point.)
+
+---
+
+## Generalization (in progress) — does the order-null hold on a 2nd species?
+Target: InfantMarmosetsVox (Sarkar's own data; Zenodo 10130104; call-type + caller).
+Plan: mirror the bat pipeline (segments -> SSL/k-means tokens -> BERT/kNN order
+control). If marmosets ALSO show order n.s. -> general claim. If order helps for
+marmosets -> bats (graded system) are special. Either outcome is significant.
+
 ### Finding 3 — methodological: per-context token-IDs leak the label
 Feeding per-context token sequences (disjoint vocab per context) to any sequence
 classifier → macro F1 ≈ 1.0 (bag-LR exactly 1.000): the token-ID range reveals the
