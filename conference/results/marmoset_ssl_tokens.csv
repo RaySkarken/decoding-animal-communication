@@ -1,0 +1,5 @@
+task,tokenizer,macro_f1,ci_lo,ci_hi
+calltype,mel,0.2911,0.2869,0.2952
+calltype,ssl,0.1277,0.1207,0.1346
+caller,mel,0.406,0.4012,0.4108
+caller,ssl,0.4517,0.441,0.4625

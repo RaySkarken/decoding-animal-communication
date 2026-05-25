@@ -120,6 +120,17 @@ silhouette**. Silhouette misleads; downstream F1 + acoustic agreement + next-tok
 perplexity all favor SSL. (Reinforces the thesis's "silhouette is a poor quality
 proxy" point.)
 
+**SSL advantage is TASK-DEPENDENT, not universal (marmoset cross-species check):**
+| task | mel-frame tokens | SSL tokens |
+|---|---|---|
+| marmoset call-type | 0.291 | 0.128 (much worse) |
+| marmoset caller | 0.406 | 0.452 (better) |
+
+→ SSL positives = same-vocalization sub-units → makes sub-units *invariant* → helps
+vocalization-level labels (bat context, marmoset caller) but ERASES within-call
+structure → hurts call-type. **The SSL positive-pair definition determines which tasks
+benefit** — a design lesson, not a blanket "SSL best".
+
 ---
 
 ## HEADLINE — length-controlled cross-species dissociation (CONFIRMED)

@@ -133,7 +133,17 @@ SSL wins at every V (+0.07–0.12 over mel-UMAP); 10 SSL tokens ≈ 110 per-cont
 discretization cost only +0.025 (vs ~0.11 for mel-UMAP). SSL tokens also agree more
 with an independent DTW acoustic reference (ARI 0.048 vs 0.041; NMI 0.454 vs 0.441)
 *despite lower silhouette* (0.088 vs 0.191) — silhouette mis-ranks quality.
-Cross-species replication (marmosets): _SSL vs mel-frame tokens — pending._
+
+**But the SSL advantage is task-dependent, not universal (key nuance).** The SSL
+objective uses positives = two sub-units of the same vocalization, making within-
+vocalization sub-units *invariant*. On marmosets this helps **caller** (0.452 vs
+0.406 mel) but badly hurts **call-type** (0.128 vs 0.291 mel): erasing within-call
+structure aids individual identity but destroys the acoustic detail that defines
+call-type. Unified reading across species: same-vocalization-contrastive SSL tokens
+improve **vocalization-level labels** (bat context, marmoset caller) and hurt labels
+requiring **within-vocalization structure** (marmoset call-type). *The SSL positive-
+pair definition determines which downstream tasks benefit* — a design lesson for
+bioacoustic tokenization, not a blanket "SSL is best".
 
 ### 4.4 Leakage caveat
 
@@ -159,5 +169,7 @@ comparisons.
 Token order contributes little to behavioral-context, call-type, or caller decoding in
 two species of tokenized vocalizations; the multiset dominates, and apparent order
 effects are small and length-dependent. A domain-matched SSL tokenizer is the best
-discrete repertoire. We urge shuffle/length/CI controls and label-leakage checks in
-animal-vocalization token-sequence research.
+discrete repertoire for vocalization-level tasks, but its advantage is task-dependent:
+the contrastive objective's invariances must align with the target label. We urge
+shuffle/length/CI controls and label-leakage checks in animal-vocalization
+token-sequence research.
